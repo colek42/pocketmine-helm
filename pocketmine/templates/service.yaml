@@ -8,7 +8,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 19132
+      targetPort: tcp
       protocol: TCP
       name: tcp
   selector:
