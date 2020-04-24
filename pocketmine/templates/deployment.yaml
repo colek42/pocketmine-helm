@@ -44,9 +44,9 @@ spec:
             - name: plugins
               mountPath: /plugins
           ports:
-            - name: tcp
+            - name: udp
               containerPort: 19132
-              protocol: TCP
+              protocol: UDP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

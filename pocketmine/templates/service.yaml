@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: tcp
-      protocol: TCP
-      name: tcp
+      targetPort: udp
+      protocol: UDP
+      name: ucp
   selector:
     {{- include "pocketmine.selectorLabels" . | nindent 4 }}
