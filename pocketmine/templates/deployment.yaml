@@ -54,6 +54,9 @@ spec:
           - name: config
             mountPath: /data/pocketmine.yml
             subPath: pocketmine.yml
+          - name: config
+            mountPath: /data/ops.txt
+            subPath: ops.txt
           ports:
             - name: udp
               containerPort: 19132
