@@ -55,7 +55,7 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: {{ include "pocketmine.fullname" . }}-config      
+          name: {{ include "pocketmine.fullname" . }}
       volumeClaimTemplates:
       - metadata:
           name: plugins
