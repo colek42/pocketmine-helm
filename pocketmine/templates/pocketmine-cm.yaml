@@ -115,9 +115,7 @@ data:
             flatworld:
                 seed: 304
                 generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
-
-        plugins:
-            legacy-data-dir: true
+                
     server.properties: |
         language=eng
         motd=Nathan and Savanna's Server
