@@ -116,8 +116,6 @@ data:
         plugins:
             legacy-data-dir: false
     server.properties: |
-        #Properties Config file
-        #Wed Jan 16 09:32:51 GMT 2019
         language=eng
         motd=PocketMine-MP Server
         server-port=19132
