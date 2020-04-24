@@ -27,26 +27,17 @@ spec:
       - name: config
         configMap:
           name: pocketmine
-      - name: plugins
 
-      initContainers:
-        - name: {{ .Chart.Name }}-plugins
-          image: curlimages/curl:7.69.1
-          workingDir: /plugins
-          command: ["curl"]
-          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar"]
-          volumeMounts:
-            - name: plugins
-              mountPath: /plugins
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          volumeMounts:
-            - name: plugins
-              mountPath: /plugins
+          env:
+            - name: POCKETMINE_PLUGINS
+              value: "MultiWorld/1.5.2"
+
           volumeMounts:
           - name: config
             mountPath: /data/server.properties
