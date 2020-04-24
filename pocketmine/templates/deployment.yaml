@@ -32,6 +32,10 @@ spec:
           image: curlimages/curl:7.69.1
           workingDir: /plugins
           command: ["curl"]
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
           args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar"]
           volumeMounts:
             - name: plugins
