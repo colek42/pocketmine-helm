@@ -14,6 +14,10 @@ spec:
       labels:
         {{- include "pocketmine.selectorLabels" . | nindent 8 }}
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -30,7 +34,7 @@ spec:
           image: curlimages/curl:7.69.1
           workingDir: /plugins
           command: ["curl"]
-          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar", "&&", "chown -R 1000:1000 /plugins"]
+          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar"]
           volumeMounts:
             - name: plugins
               mountPath: /plugins
