@@ -19,15 +19,16 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       serviceAccountName: {{ include "pocketmine.serviceAccountName" . }}
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
       volumes:
       - name: config
         configMap:
           name: pocketmine
       - name: plugins
-
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    fsGroupChangePolicy: "OnRootMismatch"
       initContainers:
         - name: {{ .Chart.Name }}-plugins
           image: curlimages/curl:7.69.1
