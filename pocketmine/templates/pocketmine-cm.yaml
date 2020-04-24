@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  Name: game-demo
+  name: {{ include "pocketmine.fullname" . }}
 data:
     pocketmine.yml: |
         settings:
