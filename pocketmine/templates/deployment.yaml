@@ -24,7 +24,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: pocketmine-cm
+          name: pocketmine
       - name: plugins
 
       initContainers:
