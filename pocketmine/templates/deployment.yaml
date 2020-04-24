@@ -33,10 +33,6 @@ spec:
           volumeMounts:
             - name: plugins
               mountPath: /plugins
-      volumes:
-        - name: config-volume
-          configMap:
-            name: {{ include "pocketmine.fullname" . }}-config
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -56,6 +52,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ include "pocketmine.fullname" . }}-config      
       volumeClaimTemplates:
       - metadata:
           name: plugins
