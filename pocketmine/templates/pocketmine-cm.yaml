@@ -3,6 +3,9 @@ kind: ConfigMap
 metadata:
   name: pocketmine
 data:
+    ops.txt: |
+        princessRose87b
+        pokenathan
     pocketmine.yml: |
         settings:
             force-language: false
