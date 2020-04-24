@@ -49,7 +49,11 @@ spec:
               mountPath: /plugins
           volumeMounts:
           - name: config
-            mountPath: /data
+            mountPath: /data/server.properties
+            subPath: server.properties
+          - name: config
+            mountPath: /data/pocketmine.yml
+            subPath: pocketmine.yml
           ports:
             - name: udp
               containerPort: 19132
