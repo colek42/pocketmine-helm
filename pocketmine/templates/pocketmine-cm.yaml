@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  Name: game-demo
+data:
+    pocketmine.yml: |
+        settings:
+            force-language: false
+            shutdown-message: "Server closed"
+            query-plugins: true
+            deprecated-verbose: true
+            enable-profiling: false
+            profile-report-trigger: 20
+            async-workers: auto
+            enable-dev-builds: false
+
+        memory:
+            global-limit: 0
+            main-limit: 0
+            main-hard-limit: 1024
+            async-worker-hard-limit: 256
+            check-rate: 20
+            continuous-trigger: true
+            continuous-trigger-rate: 30
+            garbage-collection:
+                period: 36000
+                collect-async-worker: true
+                low-memory-trigger: true
+            memory-dump:
+            dump-async-worker: true
+            max-chunks:
+                chunk-radius: 4
+                trigger-chunk-collect: true
+
+            world-caches:
+                disable-chunk-cache: true
+                low-memory-trigger: true
+
+
+        network:
+            batch-threshold: 256
+            compression-level: 7
+            async-compression: false
+            upnp-forwarding: false
+            max-mtu-size: 1492
+
+        debug:
+            level: 1
+
+        player:
+            save-player-data: true
+            anti-cheat:
+            allow-movement-cheats: true
+
+        level-settings:
+            default-format: pmanvil
+            auto-tick-rate: true
+            auto-tick-rate-limit: 20
+            base-tick-rate: 1
+            always-tick-players: false
+
+        chunk-sending:
+            per-tick: 4
+            spawn-radius: 4
+
+        chunk-ticking:
+            per-tick: 40
+            tick-radius: 3
+            light-updates: false
+            clear-tick-list: true
+            disable-block-ticking:
+
+        chunk-generation:
+            population-queue-size: 8
+
+        ticks-per:
+            autosave: 6000
+
+        auto-report:
+            enabled: false
+            send-code: false
+            send-settings: false
+            send-phpinfo: false
+            use-https: true
+            host: example.com
+
+        anonymous-statistics:
+            enabled: false #TODO: re-enable this when we have a new stats host
+            host: stats.example.net
+
+        auto-updater:
+            enabled: false
+        on-update:
+            warn-console: true
+            warn-ops: true
+        preferred-channel: stable
+        suggest-channels: true
+        host: update.pmmp.io
+
+        timings:
+            host: timings.pmmp.io
+
+        console:
+            title-tick: true
+
+        aliases:
+
+        worlds:
+            nathansworld:
+                seed: 404
+                generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
+            flatworld:
+                seed: 304
+                generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
+
+        plugins:
+            legacy-data-dir: false
+    server.properties: |
+        #Properties Config file
+        #Wed Jan 16 09:32:51 GMT 2019
+        language=eng
+        motd=PocketMine-MP Server
+        server-port=19132
+        white-list=off
+        announce-player-achievements=on
+        spawn-protection=16
+        max-players=20
+        gamemode=0
+        force-gamemode=off
+        hardcore=off
+        pvp=on
+        difficulty=1
+        generator-settings=
+        level-name=world
+        level-seed=
+        level-type=DEFAULT
+        enable-query=on
+        enable-rcon=off
+        rcon.password=vRS+68dQ8n
+        auto-save=on
+        view-distance=8
+        xbox-auth=on

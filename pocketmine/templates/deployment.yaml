@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pocketmine.fullname" . }}
+  labels:
+    {{- include "pocketmine.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "pocketmine.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "pocketmine.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "pocketmine.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+      - name: plugins
+
+      initContainers:
+        - name: {{ .Chart.Name }}-plugins
+          image: ubuntu:18.04
+          workingDir: /plugins
+          command: ["curl"]
+          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar"]
+          volumeMounts:
+            - name: plugins
+              mountPath: /plugins
+
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: plugins
+              mountPath: /plugins
+          ports:
+            - name: tcp
+              containerPort: 19132
+              protocol: TCP
+            - name: udp
+              containerPort: 19132
+              protocol: udp
+          livenessProbe:
+            tcpSocket:
+              port: tcp
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          readinessProbe:
+            tcpSocket:
+              port: tcp
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      volumeClaimTemplates:
+      - metadata:
+          name: plugins
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: "{{ .Values.persitence.storageClass }}"
+          resources:
+            requests:
+              storage: 1Gi
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
