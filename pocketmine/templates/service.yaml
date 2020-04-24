@@ -11,9 +11,5 @@ spec:
       targetPort: 19132
       protocol: TCP
       name: tcp
-    - port: {{ .Values.service.port }}
-      targetPort: 19132
-      protocol: UDP
-      name: udp
   selector:
     {{- include "pocketmine.selectorLabels" . | nindent 4 }}

@@ -47,9 +47,6 @@ spec:
             - name: tcp
               containerPort: 19132
               protocol: TCP
-            - name: udp
-              containerPort: 19132
-              protocol: UDP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
