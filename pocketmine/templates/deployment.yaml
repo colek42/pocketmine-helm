@@ -52,10 +52,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
-      volumes:
-      - name: config-volume
-        configMap:
-          name: {{ include "pocketmine.fullname" . }}
+        volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "pocketmine.fullname" . }}
       volumeClaimTemplates:
       - metadata:
           name: plugins
