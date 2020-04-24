@@ -49,7 +49,7 @@ spec:
               protocol: TCP
             - name: udp
               containerPort: 19132
-              protocol: udp
+              protocol: UDP
           livenessProbe:
             tcpSocket:
               port: tcp
