@@ -8,11 +8,11 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: tcp
+      targetPort: 19132
       protocol: TCP
       name: tcp
     - port: {{ .Values.service.port }}
-      targetPort: udp
+      targetPort: 19132
       protocol: UDP
       name: udp
   selector:
