@@ -24,17 +24,13 @@ spec:
         configMap:
           name: pocketmine
       - name: plugins
-  securityContext:
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
-    fsGroupChangePolicy: "OnRootMismatch"
+
       initContainers:
         - name: {{ .Chart.Name }}-plugins
           image: curlimages/curl:7.69.1
           workingDir: /plugins
           command: ["curl"]
-          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar"]
+          args: ["-LO", "https://poggit.pmmp.io/r/71323/MultiWorld.phar", "&&", "chown -R 1000:1000 /plugins"]
           volumeMounts:
             - name: plugins
               mountPath: /plugins
