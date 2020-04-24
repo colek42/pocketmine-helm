@@ -43,6 +43,9 @@ spec:
           volumeMounts:
             - name: plugins
               mountPath: /plugins
+          volumeMounts:
+          - name: config-volume
+            mountPath: /data
           ports:
             - name: udp
               containerPort: 19132
@@ -50,6 +53,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "pocketmine.fullname" . }}-config
       volumeClaimTemplates:
       - metadata:
           name: plugins

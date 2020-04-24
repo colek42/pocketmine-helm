@@ -10,6 +10,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: udp
       protocol: UDP
-      name: ucp
+      name: udp
   selector:
     {{- include "pocketmine.selectorLabels" . | nindent 4 }}
