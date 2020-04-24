@@ -50,16 +50,6 @@ spec:
             - name: udp
               containerPort: 19132
               protocol: UDP
-          livenessProbe:
-            tcpSocket:
-              port: tcp
-            initialDelaySeconds: 60
-            periodSeconds: 20
-          readinessProbe:
-            tcpSocket:
-              port: tcp
-            initialDelaySeconds: 15
-            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
