@@ -35,9 +35,9 @@ spec:
               mountPath: /plugins
       containers:
         volumes:
-        - name: config-volume
+        - name: config
           configMap:
-            name: {{ include "pocketmine.fullname" . }}
+            name: pocketmine-cm
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -47,7 +47,7 @@ spec:
             - name: plugins
               mountPath: /plugins
           volumeMounts:
-          - name: config-volume
+          - name: config
             mountPath: /data
           ports:
             - name: udp
