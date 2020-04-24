@@ -25,6 +25,7 @@ spec:
       - name: config
         configMap:
           name: pocketmine-cm
+      - name: plugins
 
       initContainers:
         - name: {{ .Chart.Name }}-plugins
@@ -54,15 +55,6 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
-      volumeClaimTemplates:
-      - metadata:
-          name: plugins
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: "{{ .Values.persitence.storageClass }}"
-          resources:
-            requests:
-              storage: 1Gi
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
