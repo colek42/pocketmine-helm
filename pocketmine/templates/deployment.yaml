@@ -27,6 +27,15 @@ spec:
       - name: config
         configMap:
           name: pocketmine
+      volumeClaimTemplates:
+      - metadata:
+          name: worlds
+        spec:
+          accessModes: 
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 500Mi
 
       containers:
         - name: {{ .Chart.Name }}
@@ -36,7 +45,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POCKETMINE_PLUGINS
-              value: "MultiWorld:1.5.2"
+              value: "MultiWorld:1.5.2 LightningStrike:2.0.1"
 
           volumeMounts:
           - name: config
@@ -48,6 +57,8 @@ spec:
           - name: config
             mountPath: /data/ops.txt
             subPath: ops.txt
+          - name: worlds
+            mountPath: /data/worlds
           ports:
             - name: udp
               containerPort: 19132
