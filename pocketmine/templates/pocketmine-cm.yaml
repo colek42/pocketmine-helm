@@ -112,12 +112,12 @@ data:
             home:
                 seed: 404
                 generator: FLAT:2;7,3x1,52x24;13;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
-            nathansworld:
+            nathan:
                 seed: 404
                 generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
-            flatworld:
+            jojo:
                 seed: 304
-                generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
+                generator: FLAT:2;7,59x1,3x3,2,78;12;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
 
     server.properties: |
         language=eng
