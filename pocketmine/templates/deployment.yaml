@@ -9,6 +9,14 @@ spec:
   selector:
     matchLabels:
       {{- include "pocketmine.selectorLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+  - metadata:
+      name: worlds
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
   template:
     metadata:
       labels:
@@ -27,16 +35,6 @@ spec:
       - name: config
         configMap:
           name: pocketmine
-      volumeClaimTemplates:
-      - metadata:
-          name: worlds
-        spec:
-          accessModes: 
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 500Mi
-
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
