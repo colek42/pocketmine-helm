@@ -111,7 +111,7 @@ data:
         worlds:
             home:
                 seed: 404
-                generator FLAT:2;7,3x1,52x24;13;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
+                generator: FLAT:2;7,3x1,52x24;13;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
             nathansworld:
                 seed: 404
                 generator: FLAT:2;7,2x3,2;3;village,mineshaft,stronghold,oceanmonument,biome_1,dungeon,decoration,lake,lava_lake
