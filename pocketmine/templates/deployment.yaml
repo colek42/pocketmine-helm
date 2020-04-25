@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POCKETMINE_PLUGINS
-              value: "MultiWorld:1.5.2"
+              value: "MultiWorld:1.5.2 EasyCommandAutofill"
 
           volumeMounts:
           - name: config
