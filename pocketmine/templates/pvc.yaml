@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: worlds
 spec:
-  storageClassName: default
+  storageClassName: {{ Values.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:

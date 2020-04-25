@@ -12,7 +12,7 @@ image:
 
 persitence:
   storageClass: default
-  
+
 
 
 serviceAccount:
@@ -56,3 +56,4 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+storageClassName: standard
