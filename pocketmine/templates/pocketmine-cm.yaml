@@ -127,7 +127,7 @@ data:
         announce-player-achievements=on
         spawn-protection=16
         max-players=20
-        gamemode=0
+        gamemode=1
         force-gamemode=off
         hardcore=off
         pvp=on
